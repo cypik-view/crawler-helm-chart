@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: view-crawler
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: view-crawler
+  template:
+    metadata:
+      labels:
+        app: view-crawler
+    spec:
+      containers:
+        - name: view-crawler
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            {{- range $key, $value := .Values.env }}
+            - name: {{ $key }}
+              value: "{{ $value }}"
+            {{- end }}
+          volumeMounts:
+            - name: config-volume
+              mountPath: /app/config
+              subPath: view.json
+            - name: shared-storage
+              mountPath: /app/assets
+            - name: shared-storage
+              mountPath: /app/logs
+            - name: shared-storage
+              mountPath: /app/temp
+            - name: shared-storage
+              mountPath: /app/files
+            - name: shared-storage
+              mountPath: /app/enumerations
+            - name: shared-storage
+              mountPath: /app/webhookreq
+            - name: shared-storage
+              mountPath: /app/webhookresp
+            - name: shared-storage
+              mountPath: /app/controllog
+            - name: shared-storage
+              mountPath: /app/controlapi
+            - name: shared-storage
+              mountPath: /app/controltoken
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ .Values.configmap.name }}
+        - name: shared-storage
+          persistentVolumeClaim:
+            claimName: view-crawler-pvc
