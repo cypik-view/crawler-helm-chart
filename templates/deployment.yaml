@@ -32,7 +32,7 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: {{ .Values.configmap.name }}
+            name: {{ .Chart.Name }}-config
         - name: shared-storage
           persistentVolumeClaim:
             claimName: {{ .Values.pvc.name }}
