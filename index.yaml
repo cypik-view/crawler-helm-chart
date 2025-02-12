@@ -3,12 +3,12 @@ entries:
   crawler:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-02-12T10:36:49.488881229+05:30"
+    created: "2025-02-12T11:52:42.715165809+05:30"
     description: A Helm chart for Kubernetes
-    digest: dc0e43d9589ec1a5229300631eadd6bc7acff938d8531311fd746d2c032e6e73
+    digest: e3a1739d1736f3377790c2ed9ae6f086e11bd457f7550d5022dce1bc42b0c109
     name: crawler
     type: application
     urls:
     - crawler-0.1.0.tgz
     version: 0.1.0
-generated: "2025-02-12T10:36:49.487156892+05:30"
+generated: "2025-02-12T11:52:42.71451664+05:30"
